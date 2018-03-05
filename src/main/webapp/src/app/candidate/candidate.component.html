@@ -1,0 +1,50 @@
+
+<div class="container">
+ <div [hidden]="submitted">
+ 	<h1>Candidate Information</h1>
+	<form (ngSubmit)="onSubmit()">
+		<div class="form-group row">
+			<div class="col-xs-4">
+			<label for="firstName">Fist Name</label>
+			<input [(ngModel)]="firstName" name="firstName" type="text" class="form-control" id="firstName">
+		</div>
+		</div>
+		
+		<div class="form-group row">
+			<div class="col-xs-4">
+			<label for="lastName">Last Name</label>
+			<input [(ngModel)]="lastName" name="lastName" type="text" class="form-control" id="lastName">
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<div class="col-xs-2">
+			<label for="country">Country</label>
+			<select class="form-control" id="country" [(ngModel)]="country" name="country">
+    					<option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+  			</select>
+  			</div>
+		</div>
+		
+		<div class="form-group row">
+			<div class="col-xs-4">
+			<label for="availableAfter">Available After</label>
+<!-- 			<my-date-picker name="availableAfter" [options]="myDatePickerOptions" -->
+<!--                     [(ngModel)]="availableAfter" id="availableAfter"></my-date-picker> -->
+			<input class="form-control" type="date" [(ngModel)]="availableAfter" name="availableAfter" id="availableAfter"/>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+		<div class="col-xs-2"><button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button></div>
+		</div>
+	</form>
+</div>
+<div [hidden]="!submitted">
+	<app-candidate-cv [firstName]="firstName"
+					  [lastName]="lastName"
+					  [country]="country" 
+					  [availableAfter]="availableAfter">
+	</app-candidate-cv>
+</div>
+</div>
